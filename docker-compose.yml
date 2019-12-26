@@ -10,3 +10,15 @@ services:
             - "./app:/app"
         command: >
             sh -c "python manage.py runserver 0.0.0.0:8000"
+    redis:
+        image: sameersbn/redis:latest
+        ports:
+            - 8001:6379
+    redisBanner:
+        image: tenstartups/redis-commander
+        command: --redis-host redis
+        links:
+            - redis:redis
+        ports:
+            - 8002:8081
+            
