@@ -8,7 +8,7 @@ def index(request):
     count = get_latest_count(db) + 1
     save(db, "count", count)
 
-    return HttpResponse("Hello, world. You have visited this site %s time(s)" % count)
+    return render(request, 'poll.html', {"count": count})
 
 def get_redis_db():
     return redis.Redis(host='pythonapp_redis_1', port=6379, decode_responses=True)
